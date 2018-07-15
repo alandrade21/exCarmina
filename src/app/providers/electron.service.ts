@@ -11,25 +11,25 @@ import { Injectable } from '@angular/core';
 // the resulting javascript file will look as if you never imported the module at all.
 
 // Os 3 imports abaixo foram comentados como parte da solução de contorno.
-// import { ipcRenderer, webFrame, remote } from 'electron';
-// import * as childProcess from 'child_process';
-// import * as fs from 'fs';
+ import { ipcRenderer, webFrame, remote } from 'electron';
+ import * as childProcess from 'child_process';
+ import * as fs from 'fs';
 
 @Injectable()
 export class ElectronService {
 
-  // As referencias abaixo foram alteradas para referenciar as variáveis globais importadas 
+  // As referencias abaixo foram alteradas para referenciar as variáveis globais importadas
   // no index.html
-  // ipcRenderer: typeof ipcRenderer;
-  // webFrame: typeof webFrame;
-  // remote: typeof remote;
-  // childProcess: typeof childProcess;
-  // fs: typeof fs;
-  ipcRenderer: typeof electron.ipcRenderer;
-  webFrame: typeof electron.webFrame;
-  remote: typeof electron.remote;
-  childProcess: typeof childProcess.childProcess;
-  fs: typeof fs.fs;
+   ipcRenderer: typeof ipcRenderer;
+   webFrame: typeof webFrame;
+   remote: typeof remote;
+   childProcess: typeof childProcess;
+   fs: typeof fs;
+  // ipcRenderer: typeof electron.ipcRenderer;
+  // webFrame: typeof electron.webFrame;
+  // remote: typeof electron.remote;
+  // childProcess: typeof childProcess.childProcess;
+  // fs: typeof fs.fs;
 
   constructor() {
     // Conditional imports
