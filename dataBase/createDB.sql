@@ -29,8 +29,8 @@ CREATE TABLE tb_artist_band (
 );
 
 CREATE TABLE tb_artist_band_style (
-  artist_band_fk INTEGER not null REFERENCES tb_artist_band(id),
-  style_fk INTEGER not null REFERENCES tb_style(id),
+  artist_band_fk INTEGER not null REFERENCES tb_artist_band(id) ON DELETE cascade,
+  style_fk INTEGER not null REFERENCES tb_style(id) ON DELETE cascade,
   PRIMARY KEY (artist_band_fk, style_fk)
 );
 
@@ -55,8 +55,8 @@ CREATE TABLE tb_album (
 );
 
 CREATE TABLE tb_album_style (
-  album_fk INTEGER not null REFERENCES tb_album(id),
-  style_fk INTEGER not null REFERENCES tb_style(id),
+  album_fk INTEGER not null REFERENCES tb_album(id) ON DELETE cascade,
+  style_fk INTEGER not null REFERENCES tb_style(id) ON DELETE cascade,
   PRIMARY KEY (album_fk, style_fk) 
 );
 
@@ -84,8 +84,8 @@ CREATE TABLE tb_music (
 );
 
 CREATE TABLE tb_music_style (
-  music_fk INTEGER not null REFERENCES tb_music(id),
-  style_fk INTEGER not null REFERENCES tb_style(id),
+  music_fk INTEGER not null REFERENCES tb_music(id) ON DELETE cascade,
+  style_fk INTEGER not null REFERENCES tb_style(id) ON DELETE cascade,
   PRIMARY KEY (music_fk, style_fk) 
 );
 
