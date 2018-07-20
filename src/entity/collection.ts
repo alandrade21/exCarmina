@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn} from 'typeorm';
 
 /**
  * Entity to represent a group of albuns. This is a agregation tool to be optionally used by the user.
@@ -16,7 +16,9 @@ export class Collection {
   @Column()
   description: string;
 
+  @CreateDateColumn()
   creatinDate: Date;
 
+  @UpdateDateColumn()
   lastAlterationDate: Date;
 }

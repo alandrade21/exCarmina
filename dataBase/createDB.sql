@@ -7,7 +7,9 @@
 CREATE TABLE tb_collection (
   id INTEGER PRIMARY KEY autoincrement,
   name TEXT not null UNIQUE,
-  description TEXT
+  description TEXT,
+  creatinDate TEXT not null DEFAULT date('now'),
+  lastAlterationDate TEXT DEFAULT date('now')
 );
 
 /* MUSIC or ALBUNS STYLES */
