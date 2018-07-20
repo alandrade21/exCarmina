@@ -9,7 +9,6 @@ export class Collection {
   @PrimaryGeneratedColumn()
   id: number;
 
-
   @Column({unique: true, nullable: false})
   name: string;
 
@@ -17,7 +16,7 @@ export class Collection {
   description: string;
 
   @CreateDateColumn()
-  creatinDate: Date;
+  creationDate: Date;
 
   @UpdateDateColumn()
   lastAlterationDate: Date;

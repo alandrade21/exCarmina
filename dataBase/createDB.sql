@@ -8,7 +8,7 @@ CREATE TABLE tb_collection (
   id INTEGER PRIMARY KEY autoincrement,
   name TEXT not null UNIQUE,
   description TEXT,
-  creatinDate TEXT not null DEFAULT date('now'),
+  creationDate TEXT not null DEFAULT date('now'),
   lastAlterationDate TEXT DEFAULT date('now')
 );
 
@@ -17,7 +17,9 @@ CREATE TABLE tb_collection (
 CREATE TABLE tb_style (
   id INTEGER PRIMARY KEY autoincrement,
   name TEXT not null UNIQUE,
-  info TEXT
+  info TEXT,
+  creationDate TEXT not null DEFAULT date('now'),
+  lastAlterationDate TEXT DEFAULT date('now')
 );
 
 /* ARTISTS or BANDS*/
@@ -27,7 +29,9 @@ CREATE TABLE tb_artist_band (
   name TEXT not null,
   birth_creation TEXT,
   death_dissolution TEXT,
-  info TEXT
+  info TEXT,
+  creationDate TEXT not null DEFAULT date('now'),
+  lastAlterationDate TEXT DEFAULT date('now')
 );
 
 CREATE TABLE tb_artist_band_style (
