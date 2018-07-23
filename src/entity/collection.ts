@@ -1,4 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany} from 'typeorm';
+
+import { Album } from './album';
 
 /**
  * Entity to represent a group of albuns. This is a agregation tool to be optionally used by the user.
@@ -14,6 +16,9 @@ export class Collection {
 
   @Column()
   description: string;
+
+  @OneToMany(type => Album, album => album.collection)
+  albuns: Promise<Album[]>; // Lazy loading
 
   @CreateDateColumn()
   creationDate: Date;

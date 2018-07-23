@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 import { ArtistBand } from './artistBand';
 
@@ -15,6 +15,13 @@ export class ArtistBandPhoto {
   altText: string;
 
   @Column({name: 'artist_band_fk'})
-  @ManyToOne(type => ArtistBand, artistBand => artistBand.photos)
-  artistBand: ArtistBand;
+  @ManyToOne(type => ArtistBand, artistBand => artistBand.photos,
+             {nullable: false, onDelete: 'CASCADE'})
+  artistBand: Promise<ArtistBand>;
+
+  @CreateDateColumn()
+  creationDate: Date;
+
+  @UpdateDateColumn()
+  lastAlterationDate: Date;
 }

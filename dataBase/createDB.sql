@@ -44,7 +44,9 @@ CREATE TABLE tb_artist_band_photo (
   id INTEGER PRIMARY KEY autoincrement,
   path TEXT not null UNIQUE,
   alt_text TEXT,
-  artist_band_fk INTEGER not null REFERENCES tb_artist_band(id) ON DELETE cascade
+  artist_band_fk INTEGER not null REFERENCES tb_artist_band(id) ON DELETE cascade,
+  creationDate TEXT not null DEFAULT date('now'),
+  lastAlterationDate TEXT DEFAULT date('now')
 );
 
 /* ALBUNS */
