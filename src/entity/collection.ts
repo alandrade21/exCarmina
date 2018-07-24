@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToMany, JoinTable} from 'typeorm';
 
 import { Album } from './album';
 
@@ -17,7 +17,10 @@ export class Collection {
   @Column()
   description: string;
 
-  @OneToMany(type => Album, album => album.collection)
+  @ManyToMany(type => Album, album => album.collections)
+  @JoinTable({name: 'tb_album_collection',
+              joinColumn: {name: 'collection_fk'},
+              inverseJoinColumn: {name: 'album_fk'}})
   albuns: Promise<Album[]>; // Lazy loading
 
   @CreateDateColumn()

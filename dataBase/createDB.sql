@@ -58,8 +58,15 @@ CREATE TABLE tb_album (
   info TEXT,
   artist_band_fk INTEGER REFERENCES tb_artist_band(id),
   various_artists_bands INTEGER not null DEFAULT 0, -- Boolean
-  collection_fk INTEGER REFERENCES tb_collection(id) ON DELETE set null,
-  CONSTRAINT various_artists_bands_ck CHECK ((various_artists_bands = 1) AND (artist_band_fk ISNULL))
+  CONSTRAINT various_artists_bands_ck CHECK ((various_artists_bands = 1) AND (artist_band_fk ISNULL)),
+  creationDate TEXT not null DEFAULT date('now'),
+  lastAlterationDate TEXT DEFAULT date('now')
+);
+
+CREATE TABLE tb_album_collection (
+  album_fk INTEGER not null REFERENCES tb_album(id) ON DELETE cascade,
+  collection_fk INTEGER not null REFERENCES tb_collection(id) ON DELETE cascade,
+  PRIMARY KEY (album_fk, collection_fk)
 );
 
 CREATE TABLE tb_album_style (
@@ -72,7 +79,10 @@ CREATE TABLE tb_album_photo (
   id INTEGER PRIMARY KEY autoincrement,
   path TEXT not null UNIQUE,
   alt_text TEXT,
-  album_fk INTEGER not null REFERENCES tb_album(id) ON DELETE cascade
+  cover Integer not null DEFAULT 0,
+  album_fk INTEGER not null REFERENCES tb_album(id) ON DELETE cascade,
+  creationDate TEXT not null DEFAULT date('now'),
+  lastAlterationDate TEXT DEFAULT date('now')
 );
 
 /* MUSICS */

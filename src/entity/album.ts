@@ -1,7 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne,
+         ManyToMany, JoinTable, OneToMany } from 'typeorm';
 
 import { ArtistBand } from './artistBand';
 import { Collection } from './collection';
+import { Style } from './style';
+import { AlbumPhoto } from './albumPhoto';
 
 @Entity('tb_album')
 export class Album {
@@ -26,10 +29,17 @@ export class Album {
   @Column({name: 'various_artists_bands', nullable: false, default: 0})
   variousArtistsBands: boolean;
 
-  @Column({name: 'collection_fk'})
-  @ManyToOne(type => Collection, collection => collection.albuns,
-             {onDelete: 'SET NULL'})
-  collection: Promise<Collection>; // Lazy loading
+  @ManyToMany(type => Collection, collection => collection.albuns)
+  collections: Promise<Collection[]>; // lazy loading
+
+  @ManyToMany(type => Style)
+  @JoinTable({name: 'tb_album_style',
+              joinColumn: {name: 'album_fk'},
+              inverseJoinColumn: {name: 'style_fk'}})
+  styles: Promise<Style[]>; // lazy loading
+
+  @OneToMany(type => AlbumPhoto, albumPhoto => albumPhoto.album, {cascade: true})
+  photos: Promise<AlbumPhoto[]>; // Lazy load
 
   @CreateDateColumn()
   creationDate: Date;
