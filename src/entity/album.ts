@@ -1,10 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne,
-         ManyToMany, JoinTable, OneToMany } from 'typeorm';
+  ManyToMany, JoinTable, OneToMany } from 'typeorm';
 
-import { ArtistBand } from './artistBand';
-import { Collection } from './collection';
-import { Style } from './style';
-import { AlbumPhoto } from './albumPhoto';
+  import { ArtistBand } from './artistBand';
+  import { Collection } from './collection';
+  import { Style } from './style';
+  import { AlbumPhoto } from './albumPhoto';
+  import { Music } from './music';
 
 @Entity('tb_album')
 export class Album {
@@ -40,6 +41,9 @@ export class Album {
 
   @OneToMany(type => AlbumPhoto, albumPhoto => albumPhoto.album, {cascade: true})
   photos: Promise<AlbumPhoto[]>; // Lazy load
+
+  @OneToMany(type => Music, music => music.album, {cascade: true})
+  musics: Promise<Music[]>; // Lazy load
 
   @CreateDateColumn()
   creationDate: Date;

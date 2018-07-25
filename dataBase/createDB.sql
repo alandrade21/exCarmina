@@ -91,14 +91,16 @@ CREATE TABLE tb_music (
   id INTEGER PRIMARY KEY autoincrement,
   title TEXT not null,
   path TEXT not null UNIQUE,
-  artist_band_fk INTEGER REFERENCES tb_artist_band(id) ON DELETE cascade,
   album_fk INTEGER not null REFERENCES tb_album(id) ON DELETE cascade,
+  artist_band_fk INTEGER REFERENCES tb_artist_band(id) ON DELETE cascade,
   track_number INTEGER,
   disc_number INTEGER,
   info TEXT,
-  duration TEXT not null,
+  duration REAL not null,
   times_played INTEGER not null DEFAULT 0,
-  evaluation INTEGER not null DEFAULT 0 CHECK (evaluation BETWEEN 0 and 5)
+  evaluation INTEGER not null DEFAULT 0 CHECK (evaluation BETWEEN 0 and 5),
+  creationDate TEXT not null DEFAULT date('now'),
+  lastAlterationDate TEXT DEFAULT date('now')
 );
 
 CREATE TABLE tb_music_style (
