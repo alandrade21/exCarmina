@@ -2,6 +2,14 @@ import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
+import { dataBaseService } from './dataBaseService/dataBaseService';
+
+try {
+  dataBaseService.conect();
+} catch (e) {
+  console.log(e);
+}
+
 let mainWindow, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');

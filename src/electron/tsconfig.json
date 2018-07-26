@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
+    "outDir": "./../../dist_electron/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "module": "es2015",
@@ -9,7 +9,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    //"target": "es2015",
     "typeRoots": [
       "node_modules/@types"
     ],
