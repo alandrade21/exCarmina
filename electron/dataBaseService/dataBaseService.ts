@@ -10,7 +10,7 @@ class DataBaseService {
       logger: 'advanced-console',
       database: './../../../dataBase/exCarmina.db',
       entities: [
-        './../../entity/*.js'
+        './../entity/*.js'
       ]
     });
 
