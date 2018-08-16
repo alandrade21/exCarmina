@@ -22,7 +22,7 @@ export class Album {
   @Column()
   info: string;
 
-  @Column({name: 'artist_band_fk'})
+  @Column({name: 'artist_band_fk', type: 'integer'})
   @ManyToOne(type => ArtistBand, artistBand => artistBand.albuns,
              {onDelete: 'CASCADE'})
   artistBand: Promise<ArtistBand>; // Lazy loading

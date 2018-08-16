@@ -8,9 +8,9 @@ class DataBaseService {
       synchronize: false,
       logging: true,
       logger: 'advanced-console',
-      database: './../../../dataBase/exCarmina.db',
+      database: './../../dataBase/exCarmina.sqlite',
       entities: [
-        './../entity/*.js'
+        './../../dist_electron/out-tsc/entity/*.js'
       ]
     });
 

@@ -8,8 +8,8 @@ CREATE TABLE tb_collection (
   id INTEGER PRIMARY KEY autoincrement,
   name TEXT not null UNIQUE,
   description TEXT,
-  creationDate TEXT not null DEFAULT date('now'),
-  lastAlterationDate TEXT DEFAULT date('now')
+  creationDate TEXT not null DEFAULT (date('now')),
+  lastAlterationDate TEXT DEFAULT (date('now'))
 );
 
 /* MUSIC or ALBUNS STYLES */
@@ -18,8 +18,8 @@ CREATE TABLE tb_style (
   id INTEGER PRIMARY KEY autoincrement,
   name TEXT not null UNIQUE,
   info TEXT,
-  creationDate TEXT not null DEFAULT date('now'),
-  lastAlterationDate TEXT DEFAULT date('now')
+  creationDate TEXT not null DEFAULT (date('now')),
+  lastAlterationDate TEXT DEFAULT (date('now'))
 );
 
 /* ARTISTS or BANDS*/
@@ -30,8 +30,8 @@ CREATE TABLE tb_artist_band (
   birth_creation TEXT,
   death_dissolution TEXT,
   info TEXT,
-  creationDate TEXT not null DEFAULT date('now'),
-  lastAlterationDate TEXT DEFAULT date('now')
+  creationDate TEXT not null DEFAULT (date('now')),
+  lastAlterationDate TEXT DEFAULT (date('now'))
 );
 
 CREATE TABLE tb_artist_band_style (
@@ -45,8 +45,8 @@ CREATE TABLE tb_artist_band_photo (
   path TEXT not null UNIQUE,
   alt_text TEXT,
   artist_band_fk INTEGER not null REFERENCES tb_artist_band(id) ON DELETE cascade,
-  creationDate TEXT not null DEFAULT date('now'),
-  lastAlterationDate TEXT DEFAULT date('now')
+  creationDate TEXT not null DEFAULT (date('now')),
+  lastAlterationDate TEXT DEFAULT (date('now'))
 );
 
 /* ALBUNS */
@@ -58,9 +58,9 @@ CREATE TABLE tb_album (
   info TEXT,
   artist_band_fk INTEGER REFERENCES tb_artist_band(id),
   various_artists_bands INTEGER not null DEFAULT 0, -- Boolean
-  CONSTRAINT various_artists_bands_ck CHECK ((various_artists_bands = 1) AND (artist_band_fk ISNULL)),
-  creationDate TEXT not null DEFAULT date('now'),
-  lastAlterationDate TEXT DEFAULT date('now')
+  creationDate TEXT not null DEFAULT (date('now')),
+  lastAlterationDate TEXT DEFAULT (date('now'))
+  CONSTRAINT various_artists_bands_ck CHECK ((various_artists_bands = 1) AND (artist_band_fk ISNULL))
 );
 
 CREATE TABLE tb_album_collection (
@@ -81,8 +81,8 @@ CREATE TABLE tb_album_photo (
   alt_text TEXT,
   cover Integer not null DEFAULT 0,
   album_fk INTEGER not null REFERENCES tb_album(id) ON DELETE cascade,
-  creationDate TEXT not null DEFAULT date('now'),
-  lastAlterationDate TEXT DEFAULT date('now')
+  creationDate TEXT not null DEFAULT (date('now')),
+  lastAlterationDate TEXT DEFAULT (date('now'))
 );
 
 /* MUSICS */
@@ -99,8 +99,8 @@ CREATE TABLE tb_music (
   duration REAL not null,
   times_played INTEGER not null DEFAULT 0,
   evaluation INTEGER not null DEFAULT 0 CHECK (evaluation BETWEEN 0 and 5),
-  creationDate TEXT not null DEFAULT date('now'),
-  lastAlterationDate TEXT DEFAULT date('now')
+  creationDate TEXT not null DEFAULT (date('now')),
+  lastAlterationDate TEXT DEFAULT (date('now'))
 );
 
 CREATE TABLE tb_music_style (

@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn,
+          ManyToMany, JoinTable, JoinColumn } from 'typeorm';
 
 import { Album } from './album';
 import { ArtistBand } from './artistBand';
@@ -16,32 +17,34 @@ export class Music {
   @Column({unique: true, nullable: false})
   path: string;
 
-  @Column({name: 'album_fk'})
+  @Column({name: 'album_fk', type: 'integer'})
   @ManyToOne(type => Album, album => album.musics,
              {nullable: false, onDelete: 'CASCADE'})
+  @JoinColumn({name: 'album_fk'})
   album: Promise<Album>; // Lazy load
 
   /**
    * Musics in a collectanea album has this field filled.
    */
-  @Column({name: 'artist_band_fk'})
+  @Column({name: 'artist_band_fk', type: 'integer'})
   @ManyToOne(type => ArtistBand,
              {onDelete: 'CASCADE'})
+  @JoinColumn({name: 'artist_band_fk'})
   artistBand: Promise<ArtistBand>; // Lazy loading
 
-  @Column()
-  track: number;
+  @Column({name: 'track_number'})
+  trackNumber: number;
 
-  @Column()
-  disc_number: number;
+  @Column({name: 'disc_number'})
+  discNumber: number;
 
   @Column()
   info: string;
 
-  @Column({name: 'times_played', nullable: false, default: 0})
+  @Column({nullable: false})
   duration: number;
 
-  @Column({nullable: false})
+  @Column({name: 'times_played', nullable: false, default: 0})
   timesPlayed: number;
 
   @Column({nullable: false, default: 0})

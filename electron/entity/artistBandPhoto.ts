@@ -14,7 +14,7 @@ export class ArtistBandPhoto {
   @Column({name: 'alt_text'})
   altText: string;
 
-  @Column({name: 'artist_band_fk'})
+  @Column({name: 'artist_band_fk', type: 'integer'})
   @ManyToOne(type => ArtistBand, artistBand => artistBand.photos,
              {nullable: false, onDelete: 'CASCADE'})
   artistBand: Promise<ArtistBand>;

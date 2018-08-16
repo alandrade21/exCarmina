@@ -1,11 +1,29 @@
+import { Music } from './entity/music';
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import 'reflect-metadata';
 
 import { dataBaseService } from './dataBaseService/dataBaseService';
+import { getManager, EntityManager, Connection, getRepository, createConnection } from 'typeorm';
 
 try {
-  dataBaseService.conect();
+  // dataBaseService.conect();
+  createConnection({
+    type: 'sqlite',
+    synchronize: false,
+    logging: true,
+    logger: 'advanced-console',
+    database: './dataBase/exCarmina.sqlite',
+    entities: [
+      './dist_electron/out-tsc/entity/*.js'
+    ]
+  }).then((conn: Connection) => {
+    console.log('criei');
+    conn.getRepository(Music).findOne(1).then((music: Music) => {
+      console.log(music);
+    });
+  }).catch ((e) => {console.log(e); });
 } catch (e) {
   console.log(e);
 }

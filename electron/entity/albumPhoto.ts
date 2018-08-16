@@ -17,7 +17,7 @@ export class AlbumPhoto {
   @Column({nullable: false, default: 0})
   cover: boolean;
 
-  @Column({name: 'album_fk'})
+  @Column({name: 'album_fk', type: 'integer'})
   @ManyToOne(type => Album, album => album.photos,
              {nullable: false, onDelete: 'CASCADE'})
   album: Promise<Album>; // Lazy load
