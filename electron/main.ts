@@ -4,9 +4,19 @@ import * as path from 'path';
 import * as url from 'url';
 import 'reflect-metadata';
 
-import { dataBaseService } from './dataBaseService/dataBaseService';
 import { getManager, EntityManager, Connection, getRepository, createConnection } from 'typeorm';
 
+import { dataBaseService } from './providers/dataBaseService';
+
+console.log(`Current directory: ${process.cwd()}`);
+console.log(`This platform is ${process.platform}`);
+console.log(`Exec path is ${process.execPath}`);
+console.log(`Main module file is ${process.mainModule.filename}`);
+console.log(`ELECTRON_DEV is ${process.env.ELECTRON_ENV}`);
+
+
+
+/*
 try {
   dataBaseService.conect().then(() => {
     console.log('criei');
@@ -17,6 +27,8 @@ try {
 } catch (e) {
   console.log(e);
 }
+
+*/
 
 let mainWindow, serve;
 const args = process.argv.slice(1);

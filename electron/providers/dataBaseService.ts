@@ -1,17 +1,17 @@
 import { Connection, createConnection } from 'typeorm';
 
 /**
- * Classe para isolar a conexão com o banco e o acesso à conexão.
+ * Class to isolate the database connection and the access to the connection object.
  */
 class DataBaseService {
 
   /**
-   * Conexão com o banco.
+   * Data base connection.
    */
   private connection: Connection = null;
 
   /**
-   * Cria a conexão e a armazena em instância.
+   * Create the database connection and stores it.
    */
   public conect(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
@@ -40,7 +40,8 @@ class DataBaseService {
   }
 
   /**
-   * Retorna a conexão previamente criada, ou dispara um erro caso não haja uma conexão criada.
+   * Returns the database connection previously created, or throws an error in case no connection
+   * exists.
    */
   public getConnection(): Connection {
     if (this.connection == null) {
