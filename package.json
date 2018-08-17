@@ -40,7 +40,7 @@
     "ng:serve": "ng serve",
     "ng:serve:web": "npm run postinstall:web && ng serve -o",
     "electron:tsc": "cd ./electron && tsc",
-    "electron:serve": "wait-on http-get://localhost:4200/ && npm run electron:tsc && electron . --serve",
+    "electron:serve": "wait-on http-get://localhost:4200/ && npm run electron:tsc && ELECTRON_ENV=dev electron . --serve",
     "electron:local": "npm run build:prod && electron .",
     "electron:linux": "npm run build:prod && npx electron-builder build --linux",
     "electron:windows": "npm run build:prod && npx electron-builder build --windows",

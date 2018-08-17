@@ -8,6 +8,9 @@
 /app-builds
 /app/*.js
 
+# generated files in dev environment
+/dev_env
+
 # dependencies
 /node_modules
 
