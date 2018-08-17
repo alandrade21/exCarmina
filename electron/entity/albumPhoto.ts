@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, JoinColumn } from 'typeorm';
 
 import { Album } from './album';
 
@@ -20,6 +20,7 @@ export class AlbumPhoto {
   @Column({name: 'album_fk', type: 'integer'})
   @ManyToOne(type => Album, album => album.photos,
              {nullable: false, onDelete: 'CASCADE'})
+  @JoinColumn({name: 'album_fk'})
   album: Promise<Album>; // Lazy load
 
   @CreateDateColumn()

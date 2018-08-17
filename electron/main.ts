@@ -8,22 +8,12 @@ import { dataBaseService } from './dataBaseService/dataBaseService';
 import { getManager, EntityManager, Connection, getRepository, createConnection } from 'typeorm';
 
 try {
-  // dataBaseService.conect();
-  createConnection({
-    type: 'sqlite',
-    synchronize: false,
-    logging: true,
-    logger: 'advanced-console',
-    database: './dataBase/exCarmina.sqlite',
-    entities: [
-      './dist_electron/out-tsc/entity/*.js'
-    ]
-  }).then((conn: Connection) => {
+  dataBaseService.conect().then(() => {
     console.log('criei');
-    conn.getRepository(Music).findOne(1).then((music: Music) => {
+    dataBaseService.getConnection().getRepository(Music).findOne(1).then((music: Music) => {
       console.log(music);
     });
-  }).catch ((e) => {console.log(e); });
+  });
 } catch (e) {
   console.log(e);
 }

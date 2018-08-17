@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne,
-  ManyToMany, JoinTable, OneToMany } from 'typeorm';
+  ManyToMany, JoinTable, OneToMany, JoinColumn } from 'typeorm';
 
   import { ArtistBand } from './artistBand';
   import { Collection } from './collection';
@@ -25,6 +25,7 @@ export class Album {
   @Column({name: 'artist_band_fk', type: 'integer'})
   @ManyToOne(type => ArtistBand, artistBand => artistBand.albuns,
              {onDelete: 'CASCADE'})
+  @JoinColumn({name: 'artist_band_fk'})
   artistBand: Promise<ArtistBand>; // Lazy loading
 
   @Column({name: 'various_artists_bands', nullable: false, default: 0})
