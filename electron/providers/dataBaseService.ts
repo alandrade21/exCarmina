@@ -29,7 +29,7 @@ class DataBaseService {
           './dist_electron/out-tsc/entity/*.js'
         ]
       }).then((con: Connection) => {
-        console.log('criei');
+        // console.log('criei');
         this.connection = con;
         resolve();
       }).catch((e: Error) => {
